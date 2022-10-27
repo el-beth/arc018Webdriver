@@ -8,8 +8,21 @@ import re
 if len(argv)!=2:
 	print("call me with a url")
 	exit(1)
+# construct a chromeoptions object using the constructor method in webdriver
+options = webdriver.ChromeOptions()
+options.add_argument("start-maximized")
+options.add_argument("temp-profile")
+options.add_argument("mute-audio")
+# uncomment the ff line if you want headless scraping
+# options.add_argument("headless")
+options.add_argument("verbose")
+options.add_experimental_option("excludeSwitches", ["enable-automation"])
+options.add_experimental_option('useAutomationExtension', False)
+# options.add_extension('/home/endu/Downloads/AdBlock — best ad blocker(4.46.0)2022-04-24.crx')
+# dc = DesiredCapabilities.CHROME
+# dc['goog:loggingPrefs'] = { 'browser':'ALL' }
+driver = webdriver.Chrome(options=options, executable_path=r"chromedriver")
 
-driver = webdriver.Chrome()
 # url="https://arc018.com/watch-tv/watch-top-gear-free-39446.5750356"
 url=argv[1]
 
